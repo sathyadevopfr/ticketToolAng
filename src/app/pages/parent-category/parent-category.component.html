@@ -1,0 +1,95 @@
+<div class="row r1 r">
+    <div class="col-7 ">
+        <div class="card">
+       <div class="card-header bg-dark ">
+       <h3> Category Name List</h3>
+        <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-bordered">
+                 <thead class="bg-warning">
+                    <tr>
+                        <th>Serial No</th>
+                        <th>Category Name</th>
+                        <th>Department Name</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                 </thead>
+                 <tbody>
+                    @for (item of gridList ; track $index; ){
+<tr>
+                        <td>{{$index+1}}</td>
+                        <td>{{item.categoryName}}</td>
+                        <td>{{item.deptName }}</td>
+                        <td class="text-center">
+                            <button class="btn btn-primary" (click)="onEdit(item)">Edit</button>
+                             <button class="btn btn-danger mx-2"
+                             (click)="onDelete(item.categoryId)"
+                             >Remove</button>
+                        </td>
+                    </tr>
+                    }
+                    
+                 </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+       </div>
+        </div>
+ </div>
+      <div class="col-4">
+            <div class="card">
+                <div class="card-header bg-dark">
+                   <h4>
+                     New Category
+                   </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="">Category Name</label>
+                            <input type="text" class="form-control" name="" id=""
+                            [(ngModel)]=" newObj.categoryName"
+                            >
+                   
+
+                        <div class="col-12">
+                        <label for="">Department Name</label>
+                        <!-- <input type="date" class="form-control"
+                        [(ngModel)]="newObj.deptName"
+                        
+                        > -->
+          <select name="" class="form-select" id="" [(ngModel)]="newObj.deptId">
+                            <option value="">Select Department</option>
+                          @for (dept of deptList; track $index){
+                            <option [value]="dept.deptId">{{dept.deptName}}</option>
+                          }
+                        </select>
+                       </div>
+                       
+                        </div>
+                        <div class="row pt-3">
+                            <div class="col-6 text-center">
+                                <button class="btn btn-secondary">Reset</button>
+                            </div>
+                         
+                             @if(this.newObj.categoryId==0){
+                     <div class="col-6 text-center">
+                                <button class="btn btn-success" (click)=" save()">Save Department</button>
+                            </div>
+                              }
+                        
+                   
+                           @else {
+                           <div class="col-6 text-center">        
+ <button class="btn btn-warning" (click)=" update()">Update</button>
+ </div> }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+

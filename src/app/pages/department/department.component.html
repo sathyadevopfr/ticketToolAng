@@ -1,0 +1,86 @@
+<div class="row r1 r">
+    <div class="col-7 ">
+        <div class="card">
+       <div class="card-header bg-dark ">
+       <h3> Department List</h3>
+        <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-bordered">
+                 <thead class="bg-warning">
+                    <tr>
+                        <th>Serial No</th>
+                        <th>Department Name</th>
+                        <th>Created Date</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                 </thead>
+                 <tbody>
+                    @for (item of deptList ; track $index; ){
+<tr>
+                        <td>{{$index+1}}</td>
+                        <td>{{item.deptName}}</td>
+                        <td>{{item.createdDate | date : 'dd-MMM-yyyy'}}</td>
+                        <td class="text-center">
+                            <button class="btn btn-primary" (click)="onEdit(item)">Edit</button>
+                             <button class="btn btn-danger mx-2"
+                             (click)="onDelete(item.deptId)"
+                             >Remove</button>
+                        </td>
+                    </tr>
+                    }
+                    
+                 </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+       </div>
+        </div>
+ </div>
+      <div class="col-4">
+            <div class="card">
+                <div class="card-header bg-dark">
+                   <h4>
+                     New Department
+                   </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="">Department Name</label>
+                            <input type="text" class="form-control" name="" id=""
+                            [(ngModel)]=" createDeptObj.deptName"
+                            >
+                       @if(this.createDeptObj.deptId==0){
+
+                        <div class="col-12">
+                        <label for="">Date of Creation</label>
+                        <input type="date" class="form-control"
+                        [(ngModel)]="createDeptObj.createdDate"
+                        
+                        >
+                       </div>
+                       }
+                        </div>
+                        <div class="row pt-3">
+                            <div class="col-6 text-center">
+                                <button class="btn btn-secondary">Reset</button>
+                            </div>
+                          @if(this.createDeptObj.deptId==0){
+                              <div class="col-6 text-center">
+                                <button class="btn btn-success" (click)=" saveDepartments()">Save Department</button>
+                            </div>
+                          } @else{
+                   
+                            <div class="col-6 text-center">        
+ <button class="btn btn-warning" (click)=" updateDepartment()">Update Department</button>
+ </div> 
+                          }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
